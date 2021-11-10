@@ -1,0 +1,24 @@
+{
+  "name": "web3-demo",
+  "version": "1.0.0",
+  "description": "A demo for the web3.js library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TommasoAzz/web3-demo.git"
+  },
+  "keywords": [
+    "web3",
+    "ethereum",
+    "node"
+  ],
+  "author": "Tommaso Azzalin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TommasoAzz/web3-demo/issues"
+  },
+  "homepage": "https://github.com/TommasoAzz/web3-demo#readme"
+}
