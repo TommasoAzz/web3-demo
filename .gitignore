@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Solidity build files
+build/
+
+# Visual Studio Code
+.vscode/

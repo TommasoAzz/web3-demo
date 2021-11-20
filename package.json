@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/TommasoAzz/web3-demo/issues"
   },
-  "homepage": "https://github.com/TommasoAzz/web3-demo#readme"
+  "homepage": "https://github.com/TommasoAzz/web3-demo#readme",
+  "dependencies": {
+    "truffle": "^5.1.33"
+  }
 }
