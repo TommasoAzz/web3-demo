@@ -1,24 +1,44 @@
 {
   "name": "web3-demo",
-  "version": "1.0.0",
   "description": "A demo for the web3.js library.",
-  "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
+  "author": "Tommaso Azzalin",
+  "version": "1.0.0",
+  "homepage": "https://github.com/TommasoAzz/web3-demo#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TommasoAzz/web3-demo.git"
   },
+  "bugs": {
+    "url": "https://github.com/TommasoAzz/web3-demo/issues"
+  },
+  "license": "MIT",
   "keywords": [
     "web3",
     "ethereum",
     "node"
   ],
-  "author": "Tommaso Azzalin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/TommasoAzz/web3-demo/issues"
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
   },
-  "homepage": "https://github.com/TommasoAzz/web3-demo#readme"
+  "scripts": {
+    "dev": "lite-server",
+    "generate-types": "npx typechain --target=truffle-v5 'build/contracts/*.json'",
+    "postinstall": "npx truffle compile && npm run generate-types"
+  },
+  "dependencies": {
+    "web3": "^1.6.1"
+  },
+  "devDependencies": {
+    "@typechain/truffle-v5": "^6.0.0",
+    "@typechain/web3-v1": "^4.0.0",
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.11.10",
+    "lite-server": "^2.3.0",
+    "truffle": "^5.1.65",
+    "ts-node": "^10.4.0",
+    "typechain": "^6.0.4",
+    "typescript": "^4.5.2"
+  }
 }
