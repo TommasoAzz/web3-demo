@@ -25,7 +25,8 @@ struct TodoItem {
 }
 
 /**
- * @dev Smart Contract for storing To-Do lists.
+ * @title Smart Contract for storing To-Do lists.
+ * @author Tommaso Azzalin
  */
 contract TodoList {
     // This structure stores all the To-Do item by all accounts.
@@ -36,6 +37,8 @@ contract TodoList {
 
     /**
      * @dev Adds the To-Do item to the list of items of the account.
+     * @param todoDescription the action to perform and that we want to control its status.
+     * @return the unique identifier of the To-Do item.
      */
     function addTodoItem(string memory todoDescription) external returns (uint) {
         require(bytes(todoDescription).length > 0);
@@ -56,7 +59,8 @@ contract TodoList {
     }
 
     /**
-     * @dev Returns the To-Do items of the account.
+     * @dev Returns the list of To-Do items of the sender account.
+     * @return the To-Do items of the account.
      */
     function getTodoItems() external view returns (TodoItem[] memory) {
         return todoLists[msg.sender];
@@ -64,6 +68,9 @@ contract TodoList {
 
     /**
      * @dev Adds the To-Do item to the list of items of the account.
+     * @param todoItemId the unique identifier returned by the contract function `addTodoItem(todoDescription)`.
+     * @param newState the new completition state (can only be larger than the current one.
+     * @return `true` if the status was updated, `false` otherwise.
      */
     function updateTodoItemState(uint todoItemId, CompletitionState newState) external returns (bool) {
         TodoItem[] storage usersItems = todoLists[msg.sender];
