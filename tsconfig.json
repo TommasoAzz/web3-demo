@@ -6,6 +6,9 @@
         "module": "CommonJS",
         "target": "ES2018",
         "strict": true,
+        "checkJs": true,
+        "pretty": true,
+        "strictFunctionTypes": true,
         "esModuleInterop": true,
         "types": [
             "@types/node",
