@@ -80,17 +80,14 @@ contract TodoList {
         bool updatedState = false;
         for(uint i = 0; i < itemCount && notFound; i++) {
             if(usersItems[i].id == todoItemId) {
-                TodoItem memory toUpd8 = usersItems[i];
+                TodoItem storage toUpd8 = usersItems[i];
                 notFound = false;
 
-                if(toUpd8.state != newState &&
-                    ((toUpd8.state == CompletitionState.ToBeDone && newState == CompletitionState.InProgress) ||
-                    (toUpd8.state == CompletitionState.InProgress && newState == CompletitionState.Completed))
-                )  {
+                if(toUpd8.state != newState && (
+                    (toUpd8.state == CompletitionState.ToBeDone && newState == CompletitionState.InProgress) ||
+                    (toUpd8.state == CompletitionState.InProgress && newState == CompletitionState.Completed)
+                ))  {
                     toUpd8.state = newState;
-                    // usersItems[i] = toUpd8; // Forse serve?
-                    // todoLists[msg.sender] = usersItems; // Forse serve?
-                    // todoLists[msg.sender][i].state = newState;
                     updatedState = true;
                 }
             }
