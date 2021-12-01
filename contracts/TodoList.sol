@@ -78,10 +78,9 @@ contract TodoList {
         uint itemCount = usersItems.length;
         bool notFound = true;
         bool updatedState = false;
-        TodoItem storage toUpd8;
         for(uint i = 0; i < itemCount && notFound; i++) {
             if(usersItems[i].id == todoItemId) {
-                toUpd8 = usersItems[i];
+                TodoItem memory toUpd8 = usersItems[i];
                 notFound = false;
 
                 if(toUpd8.state != newState &&
@@ -89,6 +88,9 @@ contract TodoList {
                     (toUpd8.state == CompletitionState.InProgress && newState == CompletitionState.Completed))
                 )  {
                     toUpd8.state = newState;
+                    // usersItems[i] = toUpd8; // Forse serve?
+                    // todoLists[msg.sender] = usersItems; // Forse serve?
+                    // todoLists[msg.sender][i].state = newState;
                     updatedState = true;
                 }
             }

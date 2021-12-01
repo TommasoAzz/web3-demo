@@ -10,6 +10,23 @@ enum CompletitionState {
     Completed
 }
 
+/**
+ * Returns an instance of BN given a completition state.
+ * @param {CompletitionState} state the state to convert.
+ * @returns {BN} state converted
+ */
+function bn(state: CompletitionState): BN {
+    switch(state) {
+        case CompletitionState.ToBeDone:
+            return new BN("0", 10);
+        case CompletitionState.InProgress:
+            return new BN("1", 10);
+        case CompletitionState.ToBeDone:
+            return new BN("2", 10);
+    }
+    return new BN("-1", 10);
+}
+
 contract("TodoList", (accounts) => {
     let todoList: TodoListInstance;
     let expectedOwnerOfFirstTodo: string;
@@ -40,10 +57,19 @@ contract("TodoList", (accounts) => {
         });
 
         it("Can update the status of the todo items", async () => {
-            const updateStatus = await todoList.updateTodoItemState.call("1", "1", {
+            const itemBeforeUpdate = (await todoList.getTodoItems({from:accounts[1]}))[0];
+            let toPassTest1 = itemBeforeUpdate.state.toString();
+            assert.equal(toPassTest1, "0", "The state should be \"To be done\".")
+            
+            const updateStatus = await todoList.updateTodoItemState.call("2", "1", {
                 from: accounts[1]
             });
             assert.equal(updateStatus, true, "The status of the todo item should have been updated!");
-        })
+            
+            // const itemAfterUpdate = (await todoList.getTodoItems({from:accounts[1]}));
+            // console.log(itemAfterUpdate);
+            // let toPassTest2 = itemAfterUpdate[0].state.toString();
+            // assert.equal(toPassTest2, "1", "The state should be \"In progress\".");
+        });
     });
 });
