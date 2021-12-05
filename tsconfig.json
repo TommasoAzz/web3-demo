@@ -9,24 +9,35 @@
         "checkJs": true,
         "pretty": true,
         "strictFunctionTypes": true,
+        "resolveJsonModule": true,
         "esModuleInterop": true,
         "types": [
             "@types/node",
             "@types/chai",
-            "@types/mocha"
+            "@types/mocha",
+            "@types/jquery",
+            "web3-net",
+            "web3-providers-http",
+            "web3-eth",
+            "web3-eth-personal",
+            "web3-eth-abi",
+            "web3-eth-accounts",
+            "web3-eth-contract",
         ],
         "typeRoots": [
             "./node_modules/@types",
             "./types"
-        ]
+        ],
+        "noImplicitAny": false
     },
     "include": [
-        "**/*.ts"
+        "**/*.ts",
+        "src/js/todolist.js"
     ],
     "exclude": [
         "node_modules",
         "build",
         "cache",
         "artifacts"
-    ]
+    ],
 }

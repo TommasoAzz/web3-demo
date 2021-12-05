@@ -1,0 +1,9 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+div#toBeDone,
+div#inProgress,
+div#completed {
+    background-color: gainsboro;
+}

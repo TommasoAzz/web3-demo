@@ -23,16 +23,18 @@
   },
   "scripts": {
     "dev": "lite-server",
-    "generate-types": "npx typechain --target=truffle-v5 'build/contracts/*.json'",
+    "generate-types": "npx typechain --target=truffle-v5 'build/contracts/*.json' && npx typechain --target=web3-v1 'build/contracts/*.json'",
     "postinstall": "npx truffle compile && npm run generate-types"
   },
   "dependencies": {
+    "jquery": "^3.6.0",
     "web3": "^1.6.1"
   },
   "devDependencies": {
     "@typechain/truffle-v5": "^6.0.0",
     "@typechain/web3-v1": "^4.0.0",
     "@types/chai": "^4.2.22",
+    "@types/jquery": "^3.5.9",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.11.10",
     "lite-server": "^2.3.0",
