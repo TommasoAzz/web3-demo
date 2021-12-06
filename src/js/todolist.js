@@ -10,16 +10,16 @@ async function initWeb3(development = false) {
     // @ts-ignore
     if((!window.ethereum && !window.web3) || development) { // Fallback to Ganache
         // @ts-ignore
-        web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+        web3Provider = {}; // TODO Replace with actual instruction.
     }
 
     // @ts-ignore
     if (window.ethereum) { // Object injected by wallets like MetaMask, new version.
         // @ts-ignore
-        web3Provider = window.ethereum;
+        web3Provider = {}; // TODO Replace with actual instruction.
         try {
             // Request account access
-            await web3Provider.request({ method: "eth_requestAccounts"});
+            (() => {})(); // TODO Replace with actual instruction.
         } catch (error) {
             // User denied account access...
             console.error("User denied account access");
@@ -28,7 +28,7 @@ async function initWeb3(development = false) {
     // @ts-ignore
     } else { // Object injected by wallets like MetaMask, old version.
         // @ts-ignore
-        web3Provider = window.web3.currentProvider;
+        web3Provider = {}; // TODO Replace with actual instruction.
     }
     // @ts-ignore
     return new Web3(web3Provider);
@@ -121,23 +121,21 @@ $(function() {
     // @ts-ignore
     $(window).on("load", async () => {
         const web3 = await initWeb3();
-        const networkId = await web3.eth.net.getId();
+        const networkId = -1; // TODO Replace with actual instruction.
 
         // TodoList.json can be found in the root directory because of bs-config.json.
         $.getJSON("TodoList.json", async function(TodoList) {
             console.log("$.getJSON");
 
             // Loading the smart contract.
-            const deployedNetwork = TodoList.networks[networkId];
+            const deployedNetwork = {
+                address: ""
+            }; // TODO Replace with actual instruction.
             console.log(`Network id: ${networkId}`);
-            const todoListContract = new web3.eth.Contract(
-                // @ts-ignore
-                TodoList.abi,
-                deployedNetwork.address
-            );
+            const todoListContract = {}; // TODO Replace with actual instruction.
 
             // Loading the accounts.
-            const accounts = await web3.eth.getAccounts();
+            const accounts = []; // TODO Replace with actual instruction.
             if(accounts.length == 0) {
                 return;
             }
@@ -151,9 +149,7 @@ $(function() {
                     return;
                 }
 
-                await todoListContract.methods.addTodoItem(text.trim()).send({
-                    from: accounts[0]
-                });
+                (() => {})(); // TODO Replace with actual instruction.
             }
 
             // Update state callback,
@@ -164,17 +160,13 @@ $(function() {
                     return;
                 }
 
-                await todoListContract.methods.updateTodoItemState(todoItemId.toString(), newState.toString()).send({
-                    from: accounts[0]
-                });
+                (() => {})(); // TODO Replace with actual instruction.
             };
 
             // Adding the refresh button.
             $("button#refresh").on("click", async function() {
                 console.log("Refreshing to-do list.");
-                const todoItems = await todoListContract.methods.getTodoItems().call({
-                    from: accounts[0]
-                });
+                const todoItems = []; // TODO Replace with actual instruction.
 
                 console.log("Found " + todoItems.length + " items.");
     
@@ -183,9 +175,7 @@ $(function() {
             });
 
             // Retrieving the available to-do items.
-            const todoItems = await todoListContract.methods.getTodoItems().call({
-                from: accounts[0]
-            });
+            const todoItems = []; // TODO Replace with actual instruction.
 
             displayTodoItems(todoItems, updateStateCallback);
             displayAddItem(addItemCallback);
