@@ -1,5 +1,3 @@
-const BN = require('bn.js');
-
 import { TodoListInstance } from "../types/truffle-contracts";
 
 const TodoListContract = artifacts.require("TodoList");
@@ -12,7 +10,6 @@ enum CompletitionState {
 
 contract("TodoList", (accounts) => {
     let todoList: TodoListInstance;
-    let expectedOwnerOfFirstTodo: string;
     
     before(async () => {
         todoList = await TodoListContract.deployed();

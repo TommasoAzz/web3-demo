@@ -19,7 +19,7 @@ async function initWeb3(development = false) {
         web3Provider = window.ethereum;
         try {
             // Request account access
-            await window.ethereum.request({ method: "eth_requestAccounts"});
+            await web3Provider.request({ method: "eth_requestAccounts"});
         } catch (error) {
             // User denied account access...
             console.error("User denied account access");
@@ -163,11 +163,6 @@ $(function() {
                 if(newState > 2) {
                     return;
                 }
-
-                const result = await todoListContract.methods.updateTodoItemState(todoItemId.toString(), newState.toString()).call({
-                    from: accounts[0]
-                });
-                console.log(result);
 
                 await todoListContract.methods.updateTodoItemState(todoItemId.toString(), newState.toString()).send({
                     from: accounts[0]

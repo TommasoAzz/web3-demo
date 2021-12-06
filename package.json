@@ -27,7 +27,6 @@
     "postinstall": "npx truffle compile && npm run generate-types"
   },
   "dependencies": {
-    "jquery": "^3.6.0",
     "web3": "^1.6.1"
   },
   "devDependencies": {
